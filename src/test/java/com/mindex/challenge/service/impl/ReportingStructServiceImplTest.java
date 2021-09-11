@@ -91,36 +91,6 @@ public class ReportingStructServiceImplTest {
 
         assertNotNull(actualStruct.getEmployee().getEmployeeId());
         assertStructureEquivalence(actualStruct, expectedStruct);
-
-        // adding another employee in the structure and testing
-//        Employee empl4 = new Employee();
-//        empl4.setFirstName("Andy");
-//        empl4.setLastName("Bernard");
-//        empl4.setDepartment("Sales");
-//        empl4.setPosition("Salesman");
-//        empl4 = restTemplate.postForEntity(employeeUrl, empl4, Employee.class).getBody();
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//
-//        empl3 = restTemplate.getForEntity(employeeIdUrl, Employee.class, empl3.getEmployeeId()).getBody();
-//        List<Employee> reporters2 = new ArrayList<>();
-//        reporters2.add(empl4);
-//        empl3.setDirectReports(reporters2);
-//        restTemplate.exchange(employeeIdUrl,
-//                        HttpMethod.PUT,
-//                        new HttpEntity<Employee>(empl3, headers),
-//                        Employee.class,
-//                        empl3.getEmployeeId()).getBody();
-//
-//        actualStruct = restTemplate.getForEntity(reportingStructUrl, ReportingStructure.class, empl1.getEmployeeId()).getBody();
-//        expectedStruct.setNumberOfReports(3);
-//
-//        assertNotNull(empl1.getEmployeeId());
-//        assertNotNull(empl4.getEmployeeId());
-//        assertNotNull(actualStruct.getEmployee());
-//
-//        assertStructureEquivalence(actualStruct, expectedStruct);
     }
 
     private static void assertStructureEquivalence(ReportingStructure expected, ReportingStructure actual) {

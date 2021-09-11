@@ -1,6 +1,7 @@
 package com.mindex.challenge;
 
 import com.mindex.challenge.dao.EmployeeRepository;
+import com.mindex.challenge.dao.CompensationRepository;
 import com.mindex.challenge.data.Employee;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +18,9 @@ public class DataBootstrapTest {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private CompensationRepository compensationRepository;
 
     @Test
     public void test() {
