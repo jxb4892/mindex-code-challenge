@@ -7,6 +7,7 @@ accessed and mutated in the database without impacting the snapshot.
 
 ### How to Run
 The application may be executed by running `gradlew bootRun`.
+The application may be built by running `gradlew build` which will run all the tests as well.
 
 ### How to Use
 The following endpoints are available to use:
@@ -78,6 +79,7 @@ the fully filled out ReportingStructure for the specified employeeId. The values
 not be persisted.
 
 #### Implementaiton
+new REST endpoint(s) available to use:
 ```
 * getStructure
     * HTTP Method: GET
@@ -89,6 +91,20 @@ not be persisted.
 Create a new type, Compensation. A Compensation has the following fields: employee, salary, and effectiveDate. Create 
 two new Compensation REST endpoints. One to create and one to read by employeeId. These should persist and query the
 Compensation from the persistence layer.
+
+#### Implementation
+new REST endpoint(s) available to use:
+```
+* CREATE
+    * HTTP Method: POST
+    * URL: localhost:8080/compensation
+    * PAYLOAD: Compensation
+    * RESPONSE: Compensation
+* READ
+    * HTTP Method: GET
+    * URL: localhost:8080/compensation/{id}
+    * RESPONSE: List<Compensation>
+```
 
 ## Delivery
 Please upload your results to a publicly accessible Git repo. Free ones are provided by Github and Bitbucket.
