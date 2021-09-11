@@ -1,7 +1,7 @@
 package com.mindex.challenge.service.impl;
 
-import java.util.List;
-import java.util.Calendar;
+import java.util.*;
+import java.util.stream.Collectors;
 import com.mindex.challenge.data.Employee;
 import com.mindex.challenge.data.Compensation;
 import com.mindex.challenge.service.CompensationService;
@@ -70,10 +70,19 @@ public class CompensationServiceImplTest {
         assertCompensationEquivalence(testCompensation, createdCompensation);
 
         // read checks
-        List<Compensation> readCompensations = restTemplate.getForEntity(compensationIdUrl, List.class, testEmployee.getEmployeeId()).getBody();
-        assertNotEquals(readCompensations.size(), 0);
-        assertEquals(createdCompensation.getEmployee().getEmployeeId(), ((Compensation) readCompensations.get(0)).getEmployee().getEmployeeId());
-        assertCompensationEquivalence(createdCompensation, ((Compensation) readCompensations.get(0)));
+        Compensation[] readCompensations = restTemplate.getForEntity(compensationIdUrl, Compensation[].class, testEmployee.getEmployeeId()).getBody();
+        List<Compensation> compList = Arrays
+                .stream(readCompensations)
+                .map(comp -> {
+                    Compensation a = new Compensation();
+                    a.setEmployee(comp.getEmployee());
+                    a.setSalary(comp.getSalary());
+                    a.setEffectiveDate(comp.getEffectiveDate());
+                    return a;
+                }).collect(Collectors.toList());
+        assertNotEquals(compList.size(), 0);
+        assertEquals(createdCompensation.getEmployee().getEmployeeId(), compList.get(0).getEmployee().getEmployeeId());
+        assertCompensationEquivalence(createdCompensation, compList.get(0));
     }
 
     private static void assertCompensationEquivalence(Compensation expected, Compensation actual) {
