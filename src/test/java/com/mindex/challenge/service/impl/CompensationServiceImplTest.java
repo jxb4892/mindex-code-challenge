@@ -46,7 +46,7 @@ public class CompensationServiceImplTest {
     }
 
     @Test
-    public void testCreateReadUpdate() {
+    public void testCreateRead() {
         Employee testEmployee = new Employee();
         testEmployee.setFirstName("John");
         testEmployee.setLastName("Doe");
@@ -78,7 +78,9 @@ public class CompensationServiceImplTest {
 
     private static void assertCompensationEquivalence(Compensation expected, Compensation actual) {
         assertEquals(expected.getEmployee().getEmployeeId(), actual.getEmployee().getEmployeeId());
-        assertEquals(expected.getSalary(), actual.getSalary());
-        assertEquals(expected.getEffectiveDate().getWeekYear(), actual.getEffectiveDate().getWeekYear());
+        assertEquals(expected.getSalary(), actual.getSalary(), 0.0);
+        assertEquals(expected.getEffectiveDate().get(Calendar.YEAR), actual.getEffectiveDate().get(Calendar.YEAR));
+        assertEquals(expected.getEffectiveDate().get(Calendar.MONTH), actual.getEffectiveDate().get(Calendar.MONTH));
+        assertEquals(expected.getEffectiveDate().get(Calendar.DATE), actual.getEffectiveDate().get(Calendar.DATE));
     }
 }
